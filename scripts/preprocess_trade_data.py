@@ -1,15 +1,17 @@
 import pandas as pd
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
-# Load trade data
 trade_data = pd.read_csv('../data/trade_data.csv')
 
-# Convert TradeTime to datetime
-trade_data['TradeTime'] = pd.to_datetime(trade_data['TradeTime'])
+trade_data.fillna(method='ffill', inplace=True)
 
-# Sort data by TradeTime
-trade_data.sort_values('TradeTime', inplace=True)
+label_encoder = LabelEncoder()
+trade_data['ProductType'] = label_encoder.fit_transform(trade_data['ProductType'])
 
-# Save the preprocessed data
-trade_data.to_csv('preprocessed_trade_data.csv', index=False)
+scaler = StandardScaler()
+numerical_features = ['TradeVolume', 'TradePrice']
+trade_data[numerical_features] = scaler.fit_transform(trade_data[numerical_features])
 
-print("Trade data preprocessed and saved to 'preprocessed_trade_data.csv'")
+trade_data.to_csv('../data/preprocessed_trade_data.csv', index=False)
+
+print("Trade data preprocessed and saved.")

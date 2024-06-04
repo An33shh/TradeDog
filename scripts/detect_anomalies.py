@@ -1,24 +1,45 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Load preprocessed trade data
 trade_data = pd.read_csv('../data/preprocessed_trade_data.csv')
 
-# Implement anomaly detection using z-score
-def detect_anomalies_zscore(data, threshold=3):
-    data_mean = np.mean(data)
-    data_std = np.std(data)
-    z_scores = [(x - data_mean) / data_std for x in data]
-    return np.where(np.abs(z_scores) > threshold)
+def detect_anomalies(data):
+    anomalies = []
 
-# Detect anomalies in TradeVolume
-anomalies = detect_anomalies_zscore(trade_data['TradeVolume'])
+    # Method 1: Z-score for trade volume
+    trade_volume_mean = data['TradeVolume'].mean()
+    trade_volume_std = data['TradeVolume'].std()
+    data['TradeVolume_ZScore'] = (data['TradeVolume'] - trade_volume_mean) / trade_volume_std
+    anomalies.extend(data[data['TradeVolume_ZScore'].abs() > 3].index)
 
-# Highlight anomalies
+    # Method 2: Z-score for trade price
+    trade_price_mean = data['TradePrice'].mean()
+    trade_price_std = data['TradePrice'].std()
+    data['TradePrice_ZScore'] = (data['TradePrice'] - trade_price_mean) / trade_price_std
+    anomalies.extend(data[data['TradePrice_ZScore'].abs() > 3].index)
+
+    # Method 3: Interquartile Range (IQR) for trade volume
+    Q1 = data['TradeVolume'].quantile(0.25)
+    Q3 = data['TradeVolume'].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    anomalies.extend(data[(data['TradeVolume'] < lower_bound) | (data['TradeVolume'] > upper_bound)].index)
+
+    # Method 4: Moving Average for trade volume
+    window_size = 10
+    data['TradeVolume_MovingAverage'] = data['TradeVolume'].rolling(window=window_size).mean()
+    anomalies.extend(data[data['TradeVolume'] > 2 * data['TradeVolume_MovingAverage']].index)
+
+    return list(set(anomalies))
+
+anomaly_indices = detect_anomalies(trade_data)
+
 trade_data['Anomaly'] = 0
-trade_data.loc[anomalies, 'Anomaly'] = 1
+trade_data.loc[anomaly_indices, 'Anomaly'] = 1
 
-# Save the results
 trade_data.to_csv('../output/anomaly_detected_trade_data.csv', index=False)
 
 print("Anomalies detected and results saved.")
