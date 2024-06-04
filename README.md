@@ -1,50 +1,65 @@
 # TradeDog
-Securing investment banking trades with real-time anomaly detection.
 
-## Project Description
-TradeDog is designed to monitor and secure the trade cycle of investment banking products such as FX, Equity, and Fixed Income. Utilizing Python and Bash, the system collects, processes, and analyzes trade data to identify anomalies and potential security breaches in real-time.
+TradeDog is a Python and Bash project that simulates a trade data management system for investment banking products such as FX, Equity, and Fixed Income.
 
-## Key Objectives
-1. **Understand the Trade Cycle:** Gain in-depth knowledge of the trade cycle for various investment banking products.
-2. **Data Collection and Processing:** Use Bash scripts to automate the collection and preprocessing of trade data.
-3. **Anomaly Detection:** Implement Python-based statistical methods to detect anomalies and potential security issues in trade data.
-4. **Security Alerts and Reports:** Generate alerts and comprehensive reports on detected anomalies.
-5. **Integration and Automation:** Integrate the system into a continuous monitoring framework.
+## Description
 
-## Project Components
+TradeDog provides a solution for managing trade data in investment banking, with features for generating synthetic trade data, preprocessing, and analyzing trade data, and detecting anomalies. It aims to simulate the trade cycle and provide insights into trade activities.
 
-### 1. Trade Data Simulation (Bash & Python)
-- **Bash Script:** Create a Bash script to simulate the generation of trade data for FX, Equity, and Fixed Income products.
-- **Python Script:** Develop a Python script to inject anomalies into the simulated trade data for testing purposes.
+## Tech Stack
 
-### 2. Data Collection and Preprocessing (Bash)
-- Automate the collection of trade data from different sources.
-- Use Bash scripts to clean and preprocess the collected data.
+- Python
+- Bash
 
-### 3. Anomaly Detection Module (Python)
-- **Data Analysis:** Use Python libraries like Pandas and NumPy for data analysis.
-- **Statistical Methods:** Apply statistical methods such as z-score, IQR (Interquartile Range), and moving averages to detect anomalies in trade data.
+## Setup
 
-### 4. Security Alerts and Reporting (Python)
-- Generate real-time alerts for detected anomalies using Python.
-- Create detailed reports on trade anomalies, including potential security breaches and unusual trade patterns.
-- Use libraries like Matplotlib or Seaborn to visualize trade data and anomalies.
+To set up the TradeDog project, follow these steps:
 
-### 5. Integration and Continuous Monitoring (Bash & Python)
-- Integrate the anomaly detection module into a continuous monitoring framework.
-- Develop Bash scripts to automate the end-to-end process, from data collection to reporting.
+1. **Clone the Repository**: Clone the TradeDog repository to your local machine.
 
-## Technologies and Tools
-- **Programming Languages:** Python, Bash
-- **Libraries:** Pandas, NumPy, Matplotlib, Seaborn
-- **Tools:** cron (for scheduling scripts), syslog (for logging alerts), Jupyter Notebook (for development and testing)
+2. **Set Up Environment**: Create a Python virtual environment and activate it.
+
+   ```bash
+   python3 -m venv tradedog_env
+   source tradedog_env/bin/activate
+   ```
+
+3. **Install Dependencies**: Install the required Python dependencies using pip.
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Generate Trade Data**: Run the `generate_trade_data.sh` script to generate synthetic trade data.
+
+   ```bash
+   ./generate_trade_data.sh
+   ```
+
+5. **Preprocess Data**: Execute the `preprocess_trade_data.py` script to preprocess the generated trade data.
+
+   ```bash
+   python preprocess_trade_data.py
+   ```
+
+6. **Detect Anomalies**: Run the `detect_anomalies.py` script to detect anomalies in the preprocessed trade data.
+
+   ```bash
+   python detect_anomalies.py
+   ```
+
+7. **Generate Alerts and Reports**: Execute the `generate_alerts_reports.py` script to generate alerts and reports based on detected anomalies.
+
+   ```bash
+   python generate_alerts_reports.py
+   ```
+
+8. **Automate Everything**: To automate the entire process, run the run_tradedog.sh script. This script will sequentially execute all the necessary steps.
+
+   ```bash
+   ./run_tradedog.sh   
+   ```
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-## Acknowledgments
-- [Pandas Documentation](https://pandas.pydata.org/pandas-docs/stable/)
-- [NumPy Documentation](https://numpy.org/doc/)
-- [Matplotlib Documentation](https://matplotlib.org/stable/contents.html)
-- [Seaborn Documentation](https://seaborn.pydata.org/)
-
+TradeDog is licensed under the [MIT License](LICENSE).
