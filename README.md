@@ -54,7 +54,11 @@ To set up the TradeDog project, follow these steps:
    python generate_alerts_reports.py
    ```
 
-8. **Monitor in Real-Time**: Use the provided API to monitor trade data in real-time and receive alerts for any suspicious activities.
+8. **Automate Everything**: To automate the entire process, run the run_tradedog.sh script. This script will sequentially execute all the necessary steps.
+
+   ```bash
+   ./run_tradedog.sh   
+   ```
 
 ## License
 
