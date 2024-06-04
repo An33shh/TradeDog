@@ -34,29 +34,6 @@ TradeDog is designed to monitor and secure the trade cycle of investment banking
 - Integrate the anomaly detection module into a continuous monitoring framework.
 - Develop Bash scripts to automate the end-to-end process, from data collection to reporting.
 
-## Detailed Steps
-
-### Step 1: Simulate Trade Data
-- Write a Bash script to generate synthetic trade data for different products (FX, Equity, Fixed Income).
-- Use Python to add anomalies such as unusual trade volumes, unusual trade times, and other suspicious activities.
-
-### Step 2: Collect and Preprocess Data
-- Automate data collection using Bash scripts.
-- Clean and preprocess the data using Bash and Python, ensuring it is in a suitable format for analysis.
-
-### Step 3: Implement Anomaly Detection
-- Use Python to apply statistical methods for detecting anomalies.
-- Methods include z-score for identifying outliers, IQR for spotting unusual values, and moving averages for trend analysis.
-- Test the methods with simulated and real trade data.
-
-### Step 4: Generate Alerts and Reports
-- Develop a Python script to generate real-time alerts for detected anomalies.
-- Create comprehensive reports on detected anomalies, including visualizations.
-
-### Step 5: Automate and Integrate
-- Integrate all components into a seamless workflow using Bash and Python.
-- Ensure the system can run continuously and autonomously, with minimal manual intervention.
-
 ## Technologies and Tools
 - **Programming Languages:** Python, Bash
 - **Libraries:** Pandas, NumPy, Matplotlib, Seaborn
